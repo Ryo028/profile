@@ -23,6 +23,14 @@
       }, 200 + Math.random() * 100);
     };
 
+    UserDao.prototype.logout = function(callback) {
+      return setTimeout(function() {
+        return firebase.auth().signOut(function() {
+          return callback;
+        });
+      }, 200 + Math.random() * 100);
+    };
+
     return UserDao;
 
   })(FireModel);

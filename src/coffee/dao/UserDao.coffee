@@ -12,3 +12,9 @@ class @UserDao extends FireModel
             firebase.auth().onAuthStateChanged (user) ->
                 callback user                
         , 200 + Math.random() * 100
+        
+    logout: (callback) ->
+        setTimeout ->
+            firebase.auth().signOut ->
+                callback
+        , 200 + Math.random() * 100
