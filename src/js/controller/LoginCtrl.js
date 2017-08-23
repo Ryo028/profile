@@ -4,21 +4,18 @@
     hasProp = {}.hasOwnProperty;
 
   this.LoginCtrl = (function(superClass) {
+    var userDao;
+
     extend(LoginCtrl, superClass);
 
+    userDao = new UserDao;
+
     function LoginCtrl() {
-      var userDao;
-      userDao = new UserDao;
       userDao.loginCheck(function(user) {
         console.log(user);
         if (user) {
-          return $()(function() {
-            $(window).load(function() {
-              setTimeout(function() {
-                window.location.href = 'index.html';
-              }, 200 + Math.random() * 100);
-            });
-            return this;
+          return $(function() {
+            window.location.href = "index.html";
           });
         } else {
 
@@ -28,14 +25,14 @@
 
     LoginCtrl.prototype.getUserForm = function() {
       console.log('クリック');
-      $()(function() {
+      $(function() {
         $('#newuser').on('click', function() {
           var email, password;
           console.log('クリック');
           email = $('#email').val();
           password = $('#password').val();
           console.log(email);
-          userDao.userAdd(email, password);
+          userDao.addUser(email, password);
         });
         return this;
       });
